@@ -37,7 +37,7 @@
 ## 版权
 项目使用 MIT 协议；免费开源可随意使用；
 
-## 致谢
+## 鸣谢
 
 [Laravel学院](http://laravelacademy.org/)
 [Bootstrap中文网](http://www.bootcss.com/)
