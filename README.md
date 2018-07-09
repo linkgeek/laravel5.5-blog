@@ -2,15 +2,15 @@
 ## 项目地址
 
 - 博客：[http://jiatengfei.com](http://jiatengfei.com)   
-- github：[https://github.com/linkgeek/giant-blog](https://github.com/linkgeek/giant-blog)   
-- 码云：[https://gitee.com/jiatengfei/laravel-bjyblog](https://gitee.com/jiatengfei/laravel-bjyblog)    
+- github：[https://github.com/linkgeek/laravel-blog](https://github.com/linkgeek/laravel-blog)   
+- 码云：[https://gitee.com/linkgeek/laravel-blog](https://gitee.com/linkgeek/laravel-blog)    
 
 ## 简介
 基于简洁、优雅的laravel框架进行开发，前端布局使用了Bootstrap响应式框架。本博客属于个人使用的博客，主要用作学习记录及分享交流的一个平台，欢迎您的关注。
 
 预览图：
 
-![laravel-bjyblog](http://www.jiatengfei.com/images/home/preview.jpg)  
+![laravel-blog](http://www.jiatengfei.com/images/home/preview.jpg)  
 
 ## 项目介绍
 1. 使用Bootstrap响应式页面布局，适配PC、平板、手机；
