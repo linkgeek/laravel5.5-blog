@@ -68,7 +68,7 @@
                     <li class="b-nav-cname b-nav-login">
                         <div class="hidden-xs b-login-mobile"></div>
                         <div class="b-login-pc">
-                            <a href="javascript:void(0);" onclick="login()" style="padding:0;"><i class="fa fa-user-circle-o"></i>登录</a>
+                            <a href="javascript:void(0);" onclick="login()"><i class="fa fa-user-circle-o"></i>登录</a>
                         </div>                        
                     </li>
                 @else
