@@ -15,7 +15,7 @@
             float: left;
             width: 143px;
             height: 118px;
-            background: url(./images/home/error.png);
+            background: url('../images/home/error.png');
         }
         #error .text {
             float: left;
@@ -27,7 +27,7 @@
             color: #333;
             font-weight: normal;
             margin-top: 16px;
-            background: url(./images/home/lost.png) no-repeat 2px center;
+            background: url('../images/home/lost.png') no-repeat 2px center;
             text-indent: -9999px;
         }
         #error .text p {
