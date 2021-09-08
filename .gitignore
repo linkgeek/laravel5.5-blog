@@ -16,3 +16,6 @@ _ide_helper.php
 /public/Demo/*
 phpunit.dusk.xml
 public/favicon.ico
+/storage/framework
+/storage/logs
+logs
