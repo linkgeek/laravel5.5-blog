@@ -1,12 +1,12 @@
 {
-    "name": "baijunyao/laravel-bjyblog",
+    "name": "linkgeek/laravel-blog",
     "description": "Laravel blog.",
     "keywords": ["framework", "laravel", "bjyblog", "blog"],
     "authors": [
         {
-            "name": "baijunyao",
-            "email": "baijunyao@baijunyao.com",
-            "homepage": "https://baijunyao.com",
+            "name": "linkgeek",
+            "email": "linkgeek@linkgeek.com",
+            "homepage": "https://linkgeek.com",
             "role": "Developer"
         }
     ],

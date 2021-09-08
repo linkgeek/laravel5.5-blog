@@ -101,7 +101,7 @@
         <!-- 通用底部文件开始 -->
         <footer id="b-foot" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <p class="b-copy text-center">
-                <span class="b-none-768 b-none-1024">加藤非曰：一技在 <i class="fa fa-hand-peace-o" title="G" style="color:#FF5722"></i>，走遍天下都不愁<span class="pipe">|</span></span><a class="banquan" target="_blank" href="#">Powered by 加藤非 {{ parse_url(config('app.url'))['host'] }}</a><span class="b-none-768 b-none-1024"><span class="pipe">|</span>Copyright© 2017-2018 </span><br>
+                <span class="b-none-768 b-none-1024">加藤非曰：一技在 <i class="fa fa-hand-peace-o" title="G" style="color:#FF5722"></i>，走遍天下都不愁<span class="pipe">|</span></span><a class="banquan" target="_blank" href="#">Powered by 加藤非 {{ parse_url(config('app.url'))['host'] }}</a><span class="b-none-768 b-none-1024"><span class="pipe">|</span>Copyright© 2018-2021 </span><br>
                 <span class="b-none-768 b-none-1024">
                     @if(!empty($config['WEB_ICP_NUMBER'])) 
                         <a href="http://www.miitbeian.gov.cn/" target="_blank">{{ $config['WEB_ICP_NUMBER'] }} </a>&nbsp;&nbsp;
@@ -174,6 +174,7 @@
 <![endif]-->
 <script src="{{ asset('statics/pace/pace.min.js') }}"></script>
 <script src="{{ asset('statics/layer-3.1/layer.js') }}"></script>
+<script color="0,205,205" opacity='0.7' zIndex="-2" count="99" src="{{ asset('js/home/canvas-nest.min.js') }}"></script>
 <script src="{{ asset('js/home/index.js') }}"></script>
 <script src="{{ asset('js/home/home.js') }}"></script>
 <script type="text/javascript">

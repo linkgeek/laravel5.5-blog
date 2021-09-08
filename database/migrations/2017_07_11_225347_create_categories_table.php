@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration {
 			$table->string('description')->default('')->comment('描述');
 			$table->boolean('sort')->default(0)->comment('排序');
 			$table->boolean('pid')->default(0)->comment('父级栏目id');
+			$table->integer('is_show')->default(1)->comment('是否显示');
 			$table->timestamps();
 			$table->softDeletes();
 		});

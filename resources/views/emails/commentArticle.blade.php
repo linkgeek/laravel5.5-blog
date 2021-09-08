@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>白俊遥博客邮件通知</title>
+    <title>LinkGeek博客邮件通知</title>
     <style>
         @media only screen and (max-width: 620px) {
             table[class=body] h1 {
@@ -121,7 +121,7 @@
                         <tr>
                             <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: center;">
                                 <span class="apple-link" style="color: #999999; font-size: 12px; text-align: center;">此邮件用为系统自动发送，请勿直接回复</span>
-                                <br> 如需帮助请前往 <a href="{{ config('app.url') }}" style="text-decoration: underline; color: #999999; font-size: 12px; text-align: center;">白俊遥博客</a>.
+                                <br> 如需帮助请前往 <a href="{{ config('app.url') }}" style="text-decoration: underline; color: #999999; font-size: 12px; text-align: center;">Linkgeek博客</a>.
                             </td>
                         </tr>
                         <tr>
