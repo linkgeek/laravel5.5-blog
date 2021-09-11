@@ -1,7 +1,7 @@
 
 <div class="b-user">
 	<a href="javascript:void(0);"><img src="/uploads/avatar/default.jpg" alt="加藤非"></a>
-	<h1>加藤非『首席』</h1>
+	<h1>加藤非</h1>
 	<p class="b-user-info">
 		<i class="fa fa-diamond" aria-hidden="true"></i><span style="color: #FF7200;">520</span>
 		<i class="fa fa-clock-o" aria-hidden="true"></i><span>2018-05-15 加入</span>

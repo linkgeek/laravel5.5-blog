@@ -47,18 +47,18 @@
                         <a href="{{ url('category/'.$v->id) }}" onclick="return recordId('cid', '{{ $v->id }}')">{{ $v->name }}</a>
                     </li>
                 @endforeach
-                
+
+                <li class="b-nav-cname @if($category_id == 'puamap') b-nav-active @endif">
+                    <a href="{{ url('puamap') }}" class="b-nav-puamap">把妹社区</a>
+                </li>
+                <li class="b-nav-cname @if($category_id == 'tool') b-nav-active @endif">
+                    <a href="{{ url('tool') }}">快捷导航</a>
+                </li>
                 @if(!$gitProject->isEmpty())
                     <li class="b-nav-cname hidden-sm  @if($category_id == 'git') b-nav-active @endif">
-                    <a href="{{ url('git') }}">开源项目</a>
+                        <a href="{{ url('git') }}">开源项目</a>
                     </li>
                 @endif
-                <li class="b-nav-cname @if($category_id == 'tool') b-nav-active @endif">
-                    <a href="{{ url('tool') }}">在线工具</a>
-                </li>
-                <li class="b-nav-cname @if($category_id == 'puamap') b-nav-active @endif">
-                    <a href="{{ url('puamap') }}" class="b-nav-puamap">把妹专区</a>
-                </li>
                 <!-- <li class="b-nav-cname hidden-sm @if($category_id == 'contact') b-nav-active @endif">
                     <a href="{{ url('contact') }}">留言板</a>
                 </li> -->
@@ -69,7 +69,7 @@
                         <div class="hidden-xs b-login-mobile"></div>
                         <div class="b-login-pc">
                             <a href="javascript:void(0);" onclick="login()"><i class="fa fa-user-circle-o"></i>登录</a>
-                        </div>                        
+                        </div>
                     </li>
                 @else
                     <li class="b-user-info">
@@ -91,7 +91,7 @@
         @yield('content')
         <!-- 通用右部区域开始 -->
         <div id="b-public-right" class="col-lg-4 hidden-xs hidden-sm hidden-md">
-            @yield("right-content")           
+            @yield("right-content")
         </div>
         <!-- 通用右部区域结束 -->
     </div>
@@ -103,7 +103,7 @@
             <p class="b-copy text-center">
                 <span class="b-none-768 b-none-1024">加藤非曰：一技在 <i class="fa fa-hand-peace-o" title="G" style="color:#FF5722"></i>，走遍天下都不愁<span class="pipe">|</span></span><a class="banquan" target="_blank" href="#">Powered by 加藤非 {{ parse_url(config('app.url'))['host'] }}</a><span class="b-none-768 b-none-1024"><span class="pipe">|</span>Copyright© 2018-2021 </span><br>
                 <span class="b-none-768 b-none-1024">
-                    @if(!empty($config['WEB_ICP_NUMBER'])) 
+                    @if(!empty($config['WEB_ICP_NUMBER']))
                         <a href="http://www.miitbeian.gov.cn/" target="_blank">{{ $config['WEB_ICP_NUMBER'] }} </a>&nbsp;&nbsp;
                     @endif
                 </span>
@@ -174,13 +174,39 @@
 <![endif]-->
 <script src="{{ asset('statics/pace/pace.min.js') }}"></script>
 <script src="{{ asset('statics/layer-3.1/layer.js') }}"></script>
-<script color="0,205,205" opacity='0.7' zIndex="-2" count="99" src="{{ asset('js/home/canvas-nest.min.js') }}"></script>
+{{--<script color="0,205,205" opacity='0.7' zIndex="-2" count="99" src="{{ asset('js/home/canvas-nest.min.js') }}"></script>--}}
 <script src="{{ asset('js/home/index.js') }}"></script>
 <script src="{{ asset('js/home/home.js') }}"></script>
 <script type="text/javascript">
     // 定义评论url
     touGaoUrl = "{{ url('tougao') }}";
     checkLogin = "{{ url('checkLogin') }}";
+    if (!isMobile()) {
+        loadJs("{{ asset('js/home/canvas-nest.min.js') }}");
+    }
+
+    function isMobile() {
+        var sUserAgent = navigator.userAgent.toLowerCase();
+        var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+        var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+        var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+        var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+        var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+        var bIsAndroid = sUserAgent.match(/android/i) == "android";
+        var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+        var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+        if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+            return true;
+        }
+        return false;
+    }
+
+    function loadJs(url) {
+        var scriptNode = document.createElement("script");
+        scriptNode.setAttribute("type", "text/javascript");
+        scriptNode.setAttribute("src", url);
+        document.head.appendChild(scriptNode);
+    }
 </script>
 <!-- 百度统计开始 -->
 {!! htmlspecialchars_decode($config['WEB_STATISTICS']) !!}

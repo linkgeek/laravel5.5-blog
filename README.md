@@ -34,6 +34,11 @@
 
 针对博客的说明：[开源项目系列之laravel-bjyblog博客](https://jiatengfei.com/article/129)  
 
+## 后台
+后台 /admin/index/index
+默认账号：test@test.com
+初始密码：123456
+
 ## 版权
 项目使用 MIT 协议；免费开源可随意使用；
 
