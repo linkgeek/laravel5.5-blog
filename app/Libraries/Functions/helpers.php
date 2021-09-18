@@ -353,3 +353,11 @@ if (! function_exists('redis')) {
     }
 }
 
+if (! function_exists('p')) {
+    $argc = func_get_args();
+    foreach ($argc as $val) {
+        echo '<pre>';
+        print_r($val);
+    }
+    exit;
+}

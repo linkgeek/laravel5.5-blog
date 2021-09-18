@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('statics/bootstrap-3.3.5/css/bootstrap-theme.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('statics/font-awesome-4.7.0/css/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('statics/css/bjy.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/home/index.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/home/index.css?v=20210918') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('statics/animate/animate.min.css') }}">
     @yield('css')
 </head>
