@@ -30,11 +30,11 @@
 
 ## 下载安装
  
-如果不熟悉laravel项目的安装使用： [如何正确的下载安装使用别人的laravel项目？](https://jiatengfei.com/article/148)  
+如果不熟悉laravel项目的安装使用： [如何正确的下载安装使用别人的laravel项目？](https://baijunyao.com/article/148)  
 
-针对博客的说明：[开源项目系列之laravel-bjyblog博客](https://jiatengfei.com/article/129)  
+针对博客的说明：[开源项目系列之laravel-bjyblog博客](https://baijunyao.comarticle/129)  
 
-## 后台
+## 博客后台
 后台 /admin/index/index
 默认账号：test@test.com
 初始密码：123456

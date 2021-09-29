@@ -354,10 +354,32 @@ if (! function_exists('redis')) {
 }
 
 if (! function_exists('p')) {
-    $argc = func_get_args();
-    foreach ($argc as $val) {
-        echo '<pre>';
-        print_r($val);
+    function p() {
+        $argc = func_get_args();
+        foreach ($argc as $val) {
+            echo '<pre>';
+            print_r($val);
+        }
+        exit;
     }
-    exit;
+}
+
+if (! function_exists('generateTree')) {
+    /**
+     * 无限分级
+     * @param $data
+     * @return array
+     */
+    function generateTree($data) {
+        $tree = [];
+        $data = array_column($data, null, 'id');
+        foreach ($data as $val) {
+            if (isset($data[$val['pid']])) {
+                $data[$val['pid']]['child'][] = &$data[$val['id']];
+            } else {
+                $tree[] = &$data[$val['id']];
+            }
+        }
+        return $tree;
+    }
 }

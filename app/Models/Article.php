@@ -109,7 +109,8 @@ class Article extends Base
         // 获取文章中的全部图片
         preg_match_all('/!\[.*?\]\((\S*).*\)/i', $content, $images);
         if (empty($images[1])) {
-            $cover = 'uploads/article/default.jpg';
+            //$cover = 'uploads/article/default.jpg';
+            $cover = 'uploads/article/default' . mt_rand(1, 4) . 'jpg';
         } else {
             // 循环给图片添加水印
             foreach ($images[1] as $k => $v) {

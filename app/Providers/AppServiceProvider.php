@@ -33,7 +33,10 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('home/*', function($view){
             $category = Cache::remember('common:category', 10080, function () {
                 // 获取分类导航
-                return Category::where('is_show',1)->select('id', 'name')->orderBy('sort')->get();
+                $category = Category::where('is_show',1)->select('id', 'name', 'pid')->orderBy('sort')->get();
+                $category = $category->toArray();
+                $category = generateTree($category);
+                return $category;
             });
 
             $articleCount = Cache::remember('common:articleCount', 10080, function(){
@@ -45,7 +48,7 @@ class AppServiceProvider extends ServiceProvider
                 // 评论总数
                 return Comment::count('id');
             });
-            
+
             $userCount = Cache::remember('common:userCount', 10080, function(){
                 // 用户总数
                 return OauthUser::count('id');
@@ -89,7 +92,7 @@ class AppServiceProvider extends ServiceProvider
                 // 获取开源项目
                 return GitProject::select('name', 'type')->orderBy('sort')->get();
             });
-	    //创建一个空集合
+	        //创建一个空集合
             $gitProject = collect([]);
 
             // 分配数据
@@ -138,7 +141,6 @@ class AppServiceProvider extends ServiceProvider
                 $assign['qqQunArticle'] = $qqQunArticle;
             }
             $view->with($assign);
-
         });
     }
 

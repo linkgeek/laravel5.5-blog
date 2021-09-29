@@ -27,7 +27,7 @@ class IndexController extends Controller
     public function index(Article $articleModel)
 	{
 	    // 获取文章列表数据
-        $article = Article::where('category_id', '<>', 5)->select('id', 'category_id', 'title', 'author', 'description', 'cover', 'created_at','click','zan_num')
+        $article = Article::where('category_id', '>', 0)->select('id', 'category_id', 'title', 'author', 'description', 'cover', 'created_at','click','zan_num')
             ->orderBy('created_at', 'desc')
             ->with(['category', 'tags'])->withCount(['comments'])
             ->paginate(10);
@@ -60,7 +60,7 @@ class IndexController extends Controller
     {
         // 获取文章数据
         $data = Article::with(['category', 'tags'])->find($id);
-        
+
         if (is_null($data)) {
             return abort(404);
         }
@@ -71,7 +71,7 @@ class IndexController extends Controller
             // 文章点击量+1
             $data->increment('click');
         }
-    
+
         if($data['category_id'] == 5){
             // 获取上一篇
             $prev = $articleModel
@@ -106,7 +106,7 @@ class IndexController extends Controller
                 ->where('id', '>', $id)
                 ->limit(1)
                 ->first();
-        }      
+        }
 
         // 获取评论
         $comment = $commentModel->getDataByArticleId($id);
@@ -158,7 +158,7 @@ class IndexController extends Controller
         if($res){
             $num = Article::where('id',$aid)->select(['zan_num'])->first()->toArray();
             return ajax_return(200, ['num' => $num]);
-        } 
+        }
     }
 
     /**

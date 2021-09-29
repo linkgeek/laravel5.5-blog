@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('statics/bootstrap-3.3.5/css/bootstrap-theme.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('statics/font-awesome-4.7.0/css/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('statics/css/bjy.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/home/index.css?v=20210918') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/home/index.css?v=20210923') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('statics/animate/animate.min.css') }}">
     @yield('css')
 </head>
@@ -40,11 +40,28 @@
             <ul class="nav navbar-nav b-nav-parent">
                 <li class="hidden-xs b-nav-mobile"></li>
                 <li class="b-nav-cname  @if($category_id == 'index') b-nav-active @endif">
-                <a href="/" onclick="recordId('/',0)">首页</a>
+                    <a href="/" onclick="recordId('/', 0)">首页</a>
                 </li>
+
                 @foreach($category as $v)
-                    <li class="b-nav-cname @if($v->id == $category_id) b-nav-active @endif">
-                        <a href="{{ url('category/'.$v->id) }}" onclick="return recordId('cid', '{{ $v->id }}')">{{ $v->name }}</a>
+                    @if(isset($v['child']))
+                        <li class="b-nav-cname @if(isset($v['child'])) dropdown @endif">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                {{ $v['name'] }}<b class="caret"></b>
+                            </a>
+                            <ul class="child-nav dropdown-menu">
+                                @foreach($v['child'] as $v2)
+                                    <li>
+                                        <a href="{{ url('category/'.$v2['id']) }}" onclick="return recordId('cid', '{{ $v2['id'] }}')">{{ $v2['name'] }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                        @continue
+                    @endif
+
+                    <li class="b-nav-cname @if($v['id'] == $category_id) b-nav-active @endif">
+                        <a href="{{ url('category/'.$v['id']) }}" onclick="return recordId('cid', '{{ $v['id'] }}')">{{ $v['name'] }}</a>
                     </li>
                 @endforeach
 
@@ -96,6 +113,7 @@
         <!-- 通用右部区域结束 -->
     </div>
 </div>
+
 <div id="b-footer">
     <div class="row">
         <!-- 通用底部文件开始 -->
@@ -166,6 +184,15 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
+    $(function () {
+        $(".dropdown").mouseover(function () {
+            $(this).addClass("open");
+        });
+        $(".dropdown").mouseleave(function(){
+            $(this).removeClass("open");
+        })
+    })
 </script>
 <script src="{{ asset('statics/bootstrap-3.3.5/js/bootstrap.min.js') }}"></script>
 <!--[if lt IE 9]>
@@ -181,6 +208,7 @@
     // 定义评论url
     touGaoUrl = "{{ url('tougao') }}";
     checkLogin = "{{ url('checkLogin') }}";
+    // 背景动画
     if (!isMobile()) {
         loadJs("{{ asset('js/home/canvas-nest.min.js') }}");
     }

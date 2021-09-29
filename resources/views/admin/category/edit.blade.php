@@ -11,6 +11,16 @@
         {{ csrf_field() }}
         <table class="table table-striped table-bordered table-hover">
             <tr>
+                <th width="7%">父类</th>
+                <td>
+                    <select class="form-control" name="pid">
+                        @foreach($category as $v)
+                            <option value="{{ $v->id }}" @if($data->pid === $v->id) selected="selected" @endif>{{ $v->name }}</option>
+                        @endforeach
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <th>分类名</th>
                 <td>
                     <input class="form-control" type="text" name="name" value="{{ $data['name'] }}">
