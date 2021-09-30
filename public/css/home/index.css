@@ -32,7 +32,7 @@ a {
     min-height: 50px;
     box-shadow: 2px 2px 5px rgba(42, 48, 60, .3);
     -webkit-box-shadow: 2px 2px 5px rgba(42, 48, 60, .3);
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 #b-content {
@@ -146,7 +146,8 @@ a {
 }
 
 #b-public-nav .b-nav-cname, #b-public-nav .b-nav-login {
-    height: 50px;
+    /*height: 50px;*/
+    height: auto;
     position: relative
 }
 
@@ -1302,6 +1303,11 @@ a {
     width: 150px;
     height: 150px;
     float: left
+}
+
+.b-qun-or-code img {
+    width: 150px;
+    height: 150px;
 }
 
 .b-qun-word {

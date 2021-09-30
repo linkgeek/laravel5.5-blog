@@ -110,7 +110,7 @@ class Article extends Base
         preg_match_all('/!\[.*?\]\((\S*).*\)/i', $content, $images);
         if (empty($images[1])) {
             //$cover = 'uploads/article/default.jpg';
-            $cover = 'uploads/article/default' . mt_rand(1, 4) . 'jpg';
+            $cover = 'uploads/article/default' . mt_rand(1, 4) . '.jpg';
         } else {
             // 循环给图片添加水印
             foreach ($images[1] as $k => $v) {

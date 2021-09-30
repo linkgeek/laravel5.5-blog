@@ -32,11 +32,11 @@
                 <p class="b-qun-code">
                     3. 点击 {!! $config['QQ_QUN_CODE'] !!}
                 </p>
-                <p class="b-qun-article">
+                {{--<p class="b-qun-article">
                     @if(!empty($qqQunArticle['id']))
                         <a href="{{ url('article', [$qqQunArticle['id']]) }}" target="_blank">{{ $qqQunArticle['title'] }}</a>
                     @endif
-                </p>
+                </p>--}}
             </li>
         </ul>
     </div>

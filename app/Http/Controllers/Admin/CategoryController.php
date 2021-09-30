@@ -45,6 +45,7 @@ class CategoryController extends Controller
     {
         $data = $request->except('_token');
         $data['sort'] = is_null($data['sort']) ? 0 : $data['sort'];
+        $data['pid'] = is_null($data['pid']) ? 0 : $data['pid'];
         $result = $categoryModel->storeData($data);
         if ($result) {
             // 更新缓存
