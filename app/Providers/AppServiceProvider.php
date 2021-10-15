@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Nav;
 use App\Models\Comment;
 use App\Models\Config;
 use App\Models\FriendshipLink;
@@ -37,6 +38,14 @@ class AppServiceProvider extends ServiceProvider
                 $category = $category->toArray();
                 $category = generateTree($category);
                 return $category;
+            });
+
+            $navs = Cache::remember('common:nav', 10080, function () {
+                // 获取菜单
+                $navs = Nav::where('deleted_at', null)->select('id', 'name', 'pid', 'url')->orderBy('sort')->get();
+                $navs = $navs->toArray();
+                $navs = generateTree($navs);
+                return $navs;
             });
 
             $articleCount = Cache::remember('common:articleCount', 10080, function(){
@@ -96,7 +105,7 @@ class AppServiceProvider extends ServiceProvider
             $gitProject = collect([]);
 
             // 分配数据
-            $assign = compact('category', 'tag', 'articleCount', 'commentCount', 'userCount', 'topArticle', 'newComment', 'friendshipLink', 'gitProject','notices');
+            $assign = compact('category', 'navs', 'tag', 'articleCount', 'commentCount', 'userCount', 'topArticle', 'newComment', 'friendshipLink', 'gitProject','notices');
             $view->with($assign);
         });
 

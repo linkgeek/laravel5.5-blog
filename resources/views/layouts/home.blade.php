@@ -42,7 +42,7 @@
                 <li class="b-nav-cname  @if($category_id == 'index') b-nav-active @endif">
                     <a href="/" onclick="recordId('/', 0)">首页</a>
                 </li>
-
+                <!-- 分类管理开始 -->
                 @foreach($category as $v)
                     @if(isset($v['child']))
                         <li class="b-nav-cname @if(isset($v['child'])) dropdown @endif">
@@ -64,13 +64,35 @@
                         <a href="{{ url('category/'.$v['id']) }}" onclick="return recordId('cid', '{{ $v['id'] }}')">{{ $v['name'] }}</a>
                     </li>
                 @endforeach
+                <!-- 分类管理结束 -->
 
-                <li class="b-nav-cname @if($category_id == 'puamap') b-nav-active @endif">
+                <!-- 菜单管理开始 -->
+                @foreach($navs as $nv)
+                    @if(isset($nv['child']))
+                        <li class="b-nav-cname @if(isset($nv['child'])) dropdown @endif">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                {{ $nv['name'] }}<b class="caret"></b>
+                            </a>
+                            <ul class="child-nav dropdown-menu">
+                                @foreach($nv['child'] as $nv2)
+                                    <li>
+                                        <a href="{{ url($nv2['url']) }}">{{ $nv2['name'] }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                        @continue
+                    @endif
+
+                    <li class="b-nav-cname @if($category_id == $nv['url']) b-nav-active @endif">
+                        <a href="{{ url($nv['url']) }}">{{ $nv['name'] }}</a>
+                    </li>
+                @endforeach
+                <!-- 菜单管理结束 -->
+
+                <!-- <li class="b-nav-cname @if($category_id == 'puamap') b-nav-active @endif">
                     <a href="{{ url('puamap') }}" class="b-nav-puamap">把妹社区</a>
-                </li>
-                <li class="b-nav-cname @if($category_id == 'tool') b-nav-active @endif">
-                    <a href="{{ url('tool') }}">快捷导航</a>
-                </li>
+                </li> -->
                 @if(!$gitProject->isEmpty())
                     <li class="b-nav-cname hidden-sm  @if($category_id == 'git') b-nav-active @endif">
                         <a href="{{ url('git') }}">开源项目</a>
@@ -80,6 +102,7 @@
                     <a href="{{ url('contact') }}">留言板</a>
                 </li> -->
             </ul>
+
             <ul id="b-login-word" class="nav navbar-nav navbar-right">
                 @if(empty(session('user.name')))
                     <li class="b-nav-cname b-nav-login">
