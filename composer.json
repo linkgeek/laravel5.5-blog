@@ -32,7 +32,8 @@
         "socialiteproviders/qq": "^3.0",
         "socialiteproviders/weibo": "^3.0",
         "vanry/laravel-scout-tntsearch": "^1.2",
-        "ext-json": "*"
+        "ext-json": "*",
+        "ext-mbstring": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.1",

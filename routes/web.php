@@ -23,9 +23,16 @@ Route::group(['namespace' => 'Home'], function () {
     Route::get('chat', 'IndexController@chat');
     // 留言板
     Route::get('contact', 'IndexController@contact');
+    //资源下载
+    Route::get('downloads', 'ResourceController@show');
+    Route::get('download', 'ResourceController@download');
+    Route::get('download2', 'ResourceController@down');
+    Route::get('downloadFile', 'ResourceController@downloadFile');
+
+
     //在线工具
     Route::get('tool', 'IndexController@tool');
-    //关于本站  
+    //关于本站
     Route::get('about', 'IndexController@about');
     // 开源项目
     Route::get('git', 'IndexController@git');
@@ -139,6 +146,26 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         Route::get('forceDelete/{id}', 'CategoryController@forceDelete');
     });
 
+    // 菜单管理
+    Route::group(['prefix' => 'nav'], function () {
+        // 分类列表
+        Route::get('index', 'NavController@index');
+        // 添加分类
+        Route::get('create', 'NavController@create');
+        Route::post('store', 'NavController@store');
+        // 编辑分类
+        Route::get('edit/{id}', 'NavController@edit');
+        Route::post('update/{id}', 'NavController@update');
+        // 排序
+        Route::post('sort', 'NavController@sort');
+        // 删除分类
+        Route::get('destroy/{id}', 'NavController@destroy');
+        // 恢复删除的分类
+        Route::get('restore/{id}', 'NavController@restore');
+        // 彻底删除分类
+        Route::get('forceDelete/{id}', 'NavController@forceDelete');
+    });
+
     // 标签管理
     Route::group(['prefix' => 'tag'], function () {
         // 标签列表
@@ -249,7 +276,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         Route::get('restore/{id}', 'NoticeController@restore');
         // 彻底删除随言碎语
         Route::get('forceDelete/{id}', 'NoticeController@forceDelete');
-        
+
     });
 
     // 系统设置
