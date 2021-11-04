@@ -50,7 +50,7 @@ class AppServiceProvider extends ServiceProvider
 
             $articleCount = Cache::remember('common:articleCount', 10080, function(){
                 // 文章总数
-                return Article::count('id');
+                return Article::where('is_show', 1)->count('id');
             });
 
             $commentCount = Cache::remember('common:commentCount', 10080, function(){
@@ -71,6 +71,7 @@ class AppServiceProvider extends ServiceProvider
             $topArticle = Cache::remember('common:topArticle', 10080, function () {
                 // 获取置顶推荐文章
                 return Article::select('id', 'title')
+                    ->where('is_show', 1)
                     ->where('is_top', 1)
                     ->orderBy('created_at', 'desc')
                     ->get();

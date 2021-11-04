@@ -24,6 +24,7 @@
             <th>标题</th>
             <th>点击数</th>
             <th>状态</th>
+            <th>是否显示</th>
             <th>发布时间</th>
             <th>操作</th>
         </tr>
@@ -40,6 +41,17 @@
                         √
                     @else
                         ×
+                    @endif
+                </td>
+                <td>
+                    @if( $v->is_show == 1 )
+                        <label class="checkbox-inline">
+                            <input type="checkbox" class="notice-status" onclick="isShow(this);" data-id="{{ $v->id}}" value="1" checked>
+                        </label>
+                    @else
+                        <label class="checkbox-inline">
+                            <input type="checkbox" class="notice-status" onclick="isShow(this);" data-id="{{ $v->id}}" value="0">
+                        </label>
                     @endif
                 </td>
                 <td>{{ $v->created_at }}</td>
@@ -61,4 +73,22 @@
         {{ $article->links('vendor.pagination.bjypage') }}
     </div>
 
+@endsection
+
+@section('js')
+    <script type="text/javascript">
+        function isShow(o){
+            var code = $(o).attr("value");
+            var id = $(o).attr("data-id");
+
+            $.ajax({
+                type: 'POST',
+                data:{code: code,id: id},
+                url: "{{ url('admin/article/status') }}",
+                success:function(data){
+
+                }
+            });
+        }
+    </script>
 @endsection

@@ -102,6 +102,12 @@
                 </td>
             </tr>
             <tr>
+                <th>显示</th>
+                <td>
+                    <input class="js-switch" type="checkbox" name="is_show" value="1" @if($article->is_show == 1) checked="checked" @endif>
+                </td>
+            </tr>
+            <tr>
                 <th>置顶</th>
                 <td>
                     <input class="js-switch" type="checkbox" name="is_top" value="1" @if($article->is_top == 1) checked="checked" @endif>
