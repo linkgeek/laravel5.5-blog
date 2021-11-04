@@ -55,7 +55,7 @@ class ArticleController extends Controller
             $data = [
                 'success' => 1,
                 'message' => $result['message'],
-                'url' => $result['data']['path'].$result['data']['new_name']
+                'url' => $result['data']['path'] . $result['data']['new_name']
             ];
         } else {
             $data = [
@@ -81,7 +81,7 @@ class ArticleController extends Controller
         if ($request->hasFile('cover')) {
             $result = upload('cover', 'uploads/article');
             if ($result['status_code'] === 200) {
-                $data['cover'] = $result['data']['path'].$result['data']['new_name'];
+                $data['cover'] = $result['data']['path'] . $result['data']['new_name'];
             }
         }
         $result = $article->storeData($data);
@@ -99,7 +99,7 @@ class ArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -133,7 +133,7 @@ class ArticleController extends Controller
         if ($request->hasFile('cover')) {
             $result = upload('cover', 'uploads/article');
             if ($result['status_code'] === 200) {
-                $data['cover'] = $result['data']['path'].$result['data']['new_name'];
+                $data['cover'] = $result['data']['path'] . $result['data']['new_name'];
             }
         }
         // 如果没有上传封面图；则使用第一张图片
