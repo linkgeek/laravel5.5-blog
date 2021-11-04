@@ -1,0 +1,5 @@
+
+Laravel 中定义命令调度，并且服务器上只需要一个 Cron 条目即可。
+任务调度定义在 app/Console/Kernel.php 文件的 schedule 方法中。
+
+* * * * * php /path-to-your-project/artisan schedule:run >> /dev/null 2>&1

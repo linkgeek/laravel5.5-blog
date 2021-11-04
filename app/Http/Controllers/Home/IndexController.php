@@ -27,7 +27,7 @@ class IndexController extends Controller
     public function index(Article $articleModel)
 	{
 	    // 获取文章列表数据
-        $article = Article::where('category_id', '>', 0)->select('id', 'category_id', 'title', 'author', 'description', 'cover', 'created_at','click','zan_num')
+        $article = Article::where('is_show', '>', 0)->select('id', 'category_id', 'title', 'author', 'description', 'cover', 'created_at','click','zan_num')
             ->orderBy('created_at', 'desc')
             ->with(['category', 'tags'])->withCount(['comments'])
             ->paginate(10);

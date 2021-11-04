@@ -125,6 +125,7 @@ class ArticleController extends Controller
     {
         $data = $request->except('_token');
         $data['is_top'] = isset($data['is_top']) ? $data['is_top'] : 0;
+        $data['is_show'] = isset($data['is_show']) ? $data['is_show'] : 0;
         $markdown = $articleModel->where('id', $id)->value('markdown');
         preg_match_all('/!\[.*\]\((.*.[jpg|jpeg|png|gif]).*\)/i', $markdown, $images);
         // 添加水印 并获取第一张图
@@ -247,5 +248,23 @@ class ArticleController extends Controller
             $articleTagModel->forceDeleteData($map);
         }
         return redirect()->back();
+    }
+
+    // 显示  隐藏
+    public function changeStatus(Request $request)
+    {
+        $is_show = $request->input('code');
+        $id = $request->input('id');
+        $article = Article::withTrashed()->find($id);
+        $article->is_show = $is_show ? 0 : 1;
+        $result = $article->save();
+        if ($result) {
+            //更新文章总数缓存
+            Cache::forget('common:articleCount');
+            // 更新热门推荐文章缓存
+            Cache::forget('common:topArticle');
+            // 更新标签统计缓存
+            Cache::forget('common:tag');
+        }
     }
 }
