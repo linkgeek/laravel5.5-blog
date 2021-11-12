@@ -13,7 +13,8 @@ if (!function_exists('ajax_return')) {
      * @param int $status_code
      * @return \Illuminate\Http\JsonResponse
      */
-    function ajax_return($status_code = 200, $data = '') {
+    function ajax_return($status_code = 200, $data = '')
+    {
         //如果如果是错误 返回错误信息
         if ($status_code != 200) {
             //增加status_code
@@ -29,7 +30,8 @@ if (!function_exists('ajax_return')) {
          * @param array $arr 需要转的数组
          * @return array       转换后的数组
          */
-        function to_string($arr) {
+        function to_string($arr)
+        {
             // app 禁止使用和为了统一字段做的判断
             $reserved_words = [];
             foreach ($arr as $k => $v) {
@@ -70,7 +72,8 @@ if (!function_exists('send_email')) {
      * @param string $template 邮件模板
      * @return array            发送状态
      */
-    function send_email($email, $name, $subject, $data = [], $template = 'emails.test') {
+    function send_email($email, $name, $subject, $data = [], $template = 'emails.test')
+    {
         Mail::send($template, $data, function ($message) use ($email, $name, $subject) {
             //如果是数组；则群发邮件
             if (is_array($email)) {
@@ -99,7 +102,8 @@ if (!function_exists('upload')) {
      * @param bool $childPath 是否根据日期生成子目录
      * @return array            上传的状态
      */
-    function upload($file, $path = 'upload', $childPath = true) {
+    function upload($file, $path = 'upload', $childPath = true)
+    {
         //判断请求中是否包含name=file的上传文件
         if (!request()->hasFile($file)) {
             $data = ['status_code' => 500, 'message' => '上传文件为空'];
@@ -123,14 +127,24 @@ if (!function_exists('upload')) {
         //获取上传的文件名
         $oldName = $file->getClientOriginalName();
         //组合新的文件名
-        $newName = uniqid() . '.' . $file->getClientOriginalExtension();
+        //$newName = uniqid() . '.' . $file->getClientOriginalExtension();
+        $fileName = explode('.', $oldName)[0];
+        $newName = $fileName . '_' . date('YmdHis') . '.' . $file->getClientOriginalExtension();
         //上传失败
         if (!$file->move($path, $newName)) {
             $data = ['status_code' => 500, 'message' => '保存文件失败'];
             return $data;
         }
         //上传成功
-        $data = ['status_code' => 200, 'message' => '上传成功', 'data' => ['old_name' => $oldName, 'new_name' => $newName, 'path' => trim($path, '.')]];
+        $data = [
+            'status_code' => 200,
+            'message' => '上传成功',
+            'data' => [
+                'old_name' => $oldName,
+                'new_name' => $newName,
+                'path' => trim($path, '.')
+            ]
+        ];
         return $data;
     }
 }
@@ -141,7 +155,8 @@ if (!function_exists('get_uid')) {
      *
      * @return mixed 用户id
      */
-    function get_uid() {
+    function get_uid()
+    {
         return Auth::id();
     }
 }
@@ -152,7 +167,8 @@ if (!function_exists('save_to_file')) {
      * @param string $fileName 文件名
      * @param array $data 数组
      */
-    function save_to_file($fileName = 'test', $data = array()) {
+    function save_to_file($fileName = 'test', $data = array())
+    {
         $path = storage_path('tmp' . DIRECTORY_SEPARATOR);
         is_dir($path) || mkdir($path);
         $fileName = str_replace('.php', '', $fileName);
@@ -172,7 +188,8 @@ if (!function_exists('re_substr')) {
      * @param string $charset 编码格式
      * @return string
      */
-    function re_substr($str, $start = 0, $length, $suffix = true, $charset = "utf-8") {
+    function re_substr($str, $start = 0, $length, $suffix = true, $charset = "utf-8")
+    {
         $slice = mb_substr($str, $start, $length, $charset);
         $omit = mb_strlen($str) >= $length ? '...' : '';
         return $suffix ? $slice . $omit : $slice;
@@ -188,7 +205,8 @@ if (!function_exists('Add_text_water')) {
      * @param string $color
      * @return mixed
      */
-    function Add_text_water($file, $text, $color = '#0B94C1') {
+    function Add_text_water($file, $text, $color = '#0B94C1')
+    {
         $image = Image::make($file);
         $image->text($text, $image->width() - 20, $image->height() - 30, function ($font) use ($color) {
             $font->file(public_path('fonts/msyh.ttf'));
@@ -209,7 +227,8 @@ if (!function_exists('word_time')) {
      * @param $time
      * @return bool|string
      */
-    function word_time($time) {
+    function word_time($time)
+    {
         // 如果是日期格式的时间;则先转为时间戳
         if (!is_integer($time)) {
             $time = strtotime($time);
@@ -239,7 +258,8 @@ if (!function_exists('markdown_to_html')) {
      * @param $markdown
      * @return mixed|string
      */
-    function markdown_to_html($markdown) {
+    function markdown_to_html($markdown)
+    {
         // 正则匹配到全部的iframe
         preg_match_all('/&lt;iframe.*iframe&gt;/', $markdown, $iframe);
         // 如果有iframe 则先替换为临时字符串
@@ -277,7 +297,8 @@ if (!function_exists('strip_html_tags')) {
      * @param bool $content true保留标签的内容text
      * @return mixed
      */
-    function strip_html_tags($tags, $str, $content = true) {
+    function strip_html_tags($tags, $str, $content = true)
+    {
         $html = [];
         // 是否保留标签内的text字符
         if ($content) {
@@ -300,7 +321,8 @@ if (!function_exists('curl_get_contents')) {
      * @param string $url url连接
      * @return string      获取到的数据
      */
-    function curl_get_contents($url) {
+    function curl_get_contents($url)
+    {
         set_time_limit(0);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);                //设置访问的url地址
@@ -324,7 +346,8 @@ if (!function_exists('redis')) {
      * @param null $expire
      * @return bool|string
      */
-    function redis($key = null, $value = null, $expire = null) {
+    function redis($key = null, $value = null, $expire = null)
+    {
         if (is_null($key)) {
             return app('redis');
         }
@@ -345,7 +368,8 @@ if (!function_exists('redis')) {
 }
 
 if (!function_exists('p')) {
-    function p() {
+    function p()
+    {
         $argc = func_get_args();
         foreach ($argc as $val) {
             echo '<pre>';
@@ -361,7 +385,8 @@ if (!function_exists('generateTree')) {
      * @param $data
      * @return array
      */
-    function generateTree($data) {
+    function generateTree($data)
+    {
         $tree = [];
         $data = array_column($data, null, 'id');
         foreach ($data as $val) {
@@ -373,46 +398,4 @@ if (!function_exists('generateTree')) {
         }
         return $tree;
     }
-}
-
-/**
- * 随机用户名
- * @param int $length
- * @return string
- */
-function generate_username($length = 6) {
-    // 密码字符集，可任意添加你需要的字符
-    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_ []{}<>~`+=,.;:/?|';
-    $username = '';
-    for ($i = 0; $i < $length; $i++) {
-        // 这里提供两种字符获取方式
-        // 第一种是使用substr 截取$chars中的任意一位字符；
-        // 第二种是取字符数组$chars 的任意元素
-        // $password .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
-        $username .= $chars[mt_rand(0, strlen($chars) - 1)];
-    }
-    return $username;
-}
-
-/**
- * 随机邮箱
- * @return string
- */
-function generate_email() {
-    $len = rand(6, 9);
-    $format = [163, 126, 'qq'];
-    $format = $format[array_rand($format)];
-    switch ($format) {
-        case 'qq':
-            $chars = '123456789';
-            break;
-        default :
-            $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            break;
-    }
-    mt_srand((double)microtime() * 1000000 * getmypid());
-    $str = "";
-    while (strlen($str) < $len)
-        $str .= substr($chars, (mt_rand() % strlen($chars)), 1);
-    return $str . "@$format.com";
 }
