@@ -2,7 +2,7 @@
 <div class="b-stat">
     <div class="b-search cl">
         <form class="form-inline" role="form" action="{{ url('search') }}" method="get" autocomplete="off">
-            <input class="b-search-text" type="text" name="kw" placeholder="全站搜索">
+            <input class="b-search-text" type="text" name="kw" value="{{ isset($title) ? $title : '' }}" placeholder="全站搜索">
             <button type="submit" class="b-search-submit"><i class="fa fa-search"></i></button>
         </form>
     </div>
