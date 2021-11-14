@@ -48,7 +48,7 @@ Route::group(['namespace' => 'Home'], function () {
     Route::any('zan', 'IndexController@zan');
     // 检测是否登录
     Route::get('checkLogin', 'IndexController@checkLogin');
-    // 搜索文章
+    // 全文搜索文章
     Route::get('search', 'IndexController@search');
     // 用于测试
     Route::get('test', 'IndexController@test');

@@ -185,7 +185,7 @@ return [
         SocialiteProviders\Manager\ServiceProvider::class,
 
         /**
-         * TNTSearch
+         * TNTSearch 全文搜索
          */
         Laravel\Scout\ScoutServiceProvider::class,
         Vanry\Scout\TNTSearchScoutServiceProvider::class,

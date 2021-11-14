@@ -29,6 +29,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        /**
+         * 增加内存防止中文分词报错
+         */
         ini_set('memory_limit', "256M");
         //分配前台通用的数据
         view()->composer('home/*', function($view){

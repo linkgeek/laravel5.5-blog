@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 
 class Article extends Base
@@ -15,7 +16,7 @@ class Article extends Base
      */
     public function toSearchableArray()
     {
-        return $this->only('id', 'title', 'keywords', 'description', 'markdown');
+        return $this->only('id', 'title', 'keywords', 'description');
     }
 
     /**
