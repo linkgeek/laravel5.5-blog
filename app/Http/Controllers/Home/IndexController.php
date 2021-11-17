@@ -225,6 +225,7 @@ class IndexController extends Controller
         // TODO 不取 markdown 和 html 字段
         // 获取标签下的文章
         $article = $tag->articles()
+            ->where('is_show', 1)
             ->orderBy('created_at', 'desc')
             ->with(['category', 'tags'])
             ->paginate(10);
