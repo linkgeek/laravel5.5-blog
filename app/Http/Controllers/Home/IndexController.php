@@ -361,26 +361,29 @@ class IndexController extends Controller
         // 获取原生搜索结果而不是转化后的Eloquent模型，用raw()
         //$raw = Article::search($wd)->raw();
         $id = Article::search($wd)->keys();
-        echo $id;die;
 
+        $articles = [];
         // 获取文章列表数据
-        $article = Article::select('id', 'category_id', 'title', 'author', 'description', 'cover', 'created_at', 'click', 'zan_num')
-            ->whereIn('id', $id)
-            ->orderBy('created_at', 'desc')
-            ->with(['category', 'tags'])->withCount(['comments'])
-            ->paginate(10);
-        $head = [
-            'title' => $wd,
-            'keywords' => '',
-            'description' => '',
-        ];
+        if ($id) {
+            $articles = Article::select('id', 'category_id', 'title', 'author', 'description', 'cover', 'created_at', 'click', 'zan_num')
+                ->whereIn('id', $id)
+                ->orderBy('created_at', 'desc')
+                ->with(['category', 'tags'])->withCount(['comments'])
+                ->paginate(10);
+        }
+
         $assign = [
             'category_id' => 'index',
-            'article' => $article,
+            'article' => $articles,
             'tagName' => '',
             'title' => $wd,
-            'head' => $head
+            'head' => [
+                'title' => $wd,
+                'keywords' => '',
+                'description' => '',
+            ]
         ];
+
         return view('home.index.index', $assign);
     }
 

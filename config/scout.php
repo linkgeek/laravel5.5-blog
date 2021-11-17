@@ -89,10 +89,10 @@ return [
     ],
 
     'tntsearch' => [
-        'storage' => storage_path('indexes'), //必须有可写权限
+        'storage' => storage_path('indexes'), //必须有可写权限 storage/indexes/
         'fuzziness' => env('TNTSEARCH_FUZZINESS', false),
         'searchBoolean' => env('TNTSEARCH_BOOLEAN', false),
-        'asYouType' => true,
+        'asYouType' => false,
 
         'fuzzy' => [
             'prefix_length' => 2,
