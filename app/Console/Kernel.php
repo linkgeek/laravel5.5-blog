@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // everyMinute everyTenMinutes daily
-        $schedule->command('lesson:log')->everyMinute();
+        $schedule->command('lesson:log')->daily();
     }
 
     /**
