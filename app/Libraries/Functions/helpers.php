@@ -385,7 +385,7 @@ if (!function_exists('generateTree')) {
     }
 }
 
-if (!function_exists('generateTree')) {
+if (!function_exists('generate_username')) {
     /**
      * 随机用户名
      * @param int $length
@@ -406,7 +406,7 @@ if (!function_exists('generateTree')) {
     }
 }
 
-if (!function_exists('generateTree')) {
+if (!function_exists('generate_email')) {
     /**
      * 随机邮箱
      * @return string
@@ -428,5 +428,26 @@ if (!function_exists('generateTree')) {
         while (strlen($str) < $len)
             $str .= substr($chars, (mt_rand() % strlen($chars)), 1);
         return $str . "@$format.com";
+    }
+}
+
+if (!function_exists('debugLog')) {
+    /**
+     * 打印日志
+     * @param string|array $msg 内容
+     * @param string $fileName 文件名
+     * @param int $maxSize 单位M
+     */
+    function debugLog($msg, $fileName = 'debug.log', $maxSize = 2)
+    {
+        $filePath = '/data/www/pro/laravel5.5-blog/storage/logs/' . $fileName;
+        $fileSize = file_exists($filePath) ? @filesize($filePath) : 0;
+        $flag = $fileSize < max(1, $maxSize) * 1024 * 1024;
+        $msgPrefix = '[' . date('Y-m-d H:i:s') . ']';
+        if (is_array($msg)) {
+            $msg = json_encode($msg, JSON_UNESCAPED_UNICODE);
+        }
+        $msg = $msgPrefix . $msg . "\r\n";
+        @file_put_contents($filePath, $msg, $flag ? FILE_APPEND : null);
     }
 }

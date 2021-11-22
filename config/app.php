@@ -123,9 +123,9 @@ return [
 
     'log' => env('APP_LOG', 'daily'),
 
-    'log_level' => env('APP_LOG_LEVEL', 'debug'),
+    'log_level' => env('APP_LOG_LEVEL', 'debug'), //日志严重程度级别
 
-    'log_max_files' => 365,
+    'log_max_files' => 30, //最大日志文件数
 
     /*
     |--------------------------------------------------------------------------

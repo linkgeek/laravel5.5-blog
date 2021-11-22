@@ -38,7 +38,8 @@ class LogInfo extends Command
     public function handle()
     {
         //
-        \DB::table('oauth_users')->insert([
+        debugLog('loginfo start');
+        $res = \DB::table('oauth_users')->insert([
             0 => [
                 'type' => rand(1, 3),
                 'name' => generate_username(),
@@ -54,6 +55,7 @@ class LogInfo extends Command
                 'deleted_at' => NULL,
             ],
         ]);
-        \Log::info('info test');
+        debugLog('loginfo result: ' . $res);
+        \Log::debug('oauth_users: '. $res);
     }
 }
