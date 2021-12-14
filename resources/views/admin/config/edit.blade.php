@@ -25,6 +25,15 @@
                 </td>
             </tr>
             <tr>
+                <th>黑白色：</th>
+                <td>
+                    <span class="inputword">开启</span>
+                    <input class="bjy-icheck" type="radio" name="BLACK_WHITE" value="1" @if($config['BLACK_WHITE'] ==1) checked @endif>
+                    <span class="inputword">关闭</span>
+                    <input class="bjy-icheck" type="radio" name="BLACK_WHITE" value="0" @if($config['BLACK_WHITE'] ==0) checked @endif>
+                </td>
+            </tr>
+            <tr>
                 <th>网站关闭时提示文字：</th>
                 <td>
                     <textarea class="form-control modal-sm" name="WEB_CLOSE_WORD" rows="5" placeholder="">{{ $config['WEB_CLOSE_WORD'] }}</textarea>

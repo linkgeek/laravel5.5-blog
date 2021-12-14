@@ -15,13 +15,21 @@
     .txtScroll-top .infoList li .date{float:right;color:#999;}
     .txtScroll-top .infoList li a{word-break:break-all;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;}
     .layui-layer-setwin a {transition:none;-moz-transition:none;-webkit-transition:none;-o-transition:none;}
-</style> 
+</style>
 @endsection
 
 @section('js')
 <script type="text/javascript" src="{{ asset('js/home/jquery.SuperSlide.2.1.1.js') }}"></script>
 <script type="text/javascript">
 jQuery(".txtScroll-top").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"topLoop",autoPlay:true,delayTime:1000});
+
+var styleFlag = "{{ $changeStyle }}";
+if (styleFlag == 1) {
+    var div = document.firstElementChild;
+    div.style.filter = "grayscale(100%)";
+    div.style.filter = "gray";
+    div.style.filter = "progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);";
+}
 </script>
 @endsection
 
@@ -43,7 +51,7 @@ jQuery(".txtScroll-top").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true
                         </ul>
                     </div>
                 </div>
-            </div>       
+            </div>
         </div>
         <!-- 公告结束 -->
         @if(!empty($tagName))
@@ -75,7 +83,7 @@ jQuery(".txtScroll-top").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true
                         <p>
                             <span><a href="#"><img src="{{ asset('uploads/avatar/default.jpg') }}" alt="">{{ $v->author }}</a></span>
                             <span class="b-none-768">{{ $v->created_at }}</span>
-                            <span class="b-list-hint" style="padding-right: 0;"> 
+                            <span class="b-list-hint" style="padding-right: 0;">
                                 <i class="fa fa-commenting-o" title="评论"></i> {{ $v->comments_count }}<i class="fa fa-eye" title="人气"></i> {{ $v->click }} <i class="fa fa-thumbs-o-up" title="点赞"></i> {{ $v->zan_num }}
                             </span>
                         </p>

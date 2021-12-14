@@ -46,6 +46,14 @@ class ConfigsTableSeeder extends Seeder {
                 'deleted_at' => NULL,
             ],
             4  => [
+                'id'         => 5,
+                'name'       => 'BLACK_WHITE',
+                'value'      => '0',
+                'created_at' => '2121-07-5 12:12:00',
+                'updated_at' => '2121-07-5 12:12:00',
+                'deleted_at' => NULL,
+            ],
+            5  => [
                 'id'         => 6,
                 'name'       => 'WATER_TYPE',
                 'value'      => '1',
@@ -53,7 +61,7 @@ class ConfigsTableSeeder extends Seeder {
                 'updated_at' => '2121-07-5 12:12:00',
                 'deleted_at' => NULL,
             ],
-            5  => [
+            6  => [
                 'id'         => 7,
                 'name'       => 'TEXT_WATER_WORD',
                 'value'      => 'linkgeek.com',
