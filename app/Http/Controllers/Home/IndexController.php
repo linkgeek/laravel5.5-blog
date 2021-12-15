@@ -42,8 +42,7 @@ class IndexController extends Controller
             'category_id' => 'index',
             'article' => $article,
             'head' => $head,
-            'tagName' => '',
-            'changeStyle' => $config->get('BLACK_WHITE'),
+            'tagName' => ''
         ];
 		return view('home.index.index', $assign);
 	}
